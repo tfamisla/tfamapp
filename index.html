@@ -595,27 +595,6 @@
     <!-- TAB: Inspection -->
     <div class="tab-content" id="tab-inspect">
       <div class="card">
-        <div class="field-row">
-          <label class="field-label">Policy Period</label>
-          <input type="text" class="field-input" id="f-policy-period" placeholder="e.g. 01-04-2025 to 31-03-2026" onchange="autoSave()">
-        </div>
-
-        <div class="field-row">
-          <label class="field-label">Sum Insured — Building (₹)</label>
-          <div class="currency-wrap">
-            <span class="currency-prefix">₹</span>
-            <input type="number" class="field-input currency-input" id="f-si-building" placeholder="0" min="0" onchange="autoSave()">
-          </div>
-        </div>
-
-        <div class="field-row">
-          <label class="field-label">Sum Insured — Content (₹)</label>
-          <div class="currency-wrap">
-            <span class="currency-prefix">₹</span>
-            <input type="number" class="field-input currency-input" id="f-si-content" placeholder="0" min="0" onchange="autoSave()">
-          </div>
-        </div>
-
         <div class="input-row">
           <div class="field-row">
             <label class="field-label">Date of Inspection *</label>
@@ -751,51 +730,33 @@
 
       <!-- Generate buttons card -->
       <div class="card">
-        <div style="font-size:12px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:14px;">Generate &amp; Share Report</div>
+        <div style="font-size:12px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:14px;">Generate Report</div>
 
-        <!-- Generate PDF -->
-        <div style="background:var(--blue-light);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;">
-          <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">📱 Generate PDF on Device</div>
-          <div style="font-size:12px;color:var(--gray-500);margin-bottom:10px;">Creates 2-page A4 PDF. No internet required.</div>
+        <!-- App PDF -->
+        <div style="background:var(--blue-light);border-radius:var(--radius-sm);padding:14px;margin-bottom:12px;">
+          <div style="font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:4px;">📱 Generate on Device</div>
+          <div style="font-size:12px;color:var(--gray-500);margin-bottom:12px;">Creates a 2-page A4 PDF directly on this phone/laptop. No internet required.</div>
+          <div style="font-size:11px;color:var(--gray-400);margin-bottom:10px;font-family:monospace;">Page 1: All claim &amp; inspection details<br>Page 2: Photographs + Surveyor signature</div>
           <button class="btn btn-primary btn-full btn-lg" onclick="generatePDF()">
-            📄 GENERATE &amp; SAVE PDF
+            📄 GENERATE PDF
           </button>
+          <div style="font-size:11px;color:var(--gray-400);margin-top:8px;text-align:center;">Saves as: ClaimNo_InsuredName_FieldSurveyReport.pdf</div>
         </div>
 
-        <!-- Share options -->
-        <div style="background:var(--gray-50);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;">
-          <div style="font-size:13px;font-weight:700;color:var(--gray-700);margin-bottom:10px;">📤 Share PDF After Generating</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;">
-            <button class="btn btn-green btn-sm" style="flex-direction:column;gap:4px;padding:10px 6px;border-radius:10px" onclick="shareWhatsApp()">
-              <span style="font-size:18px;">💬</span>
-              <span style="font-size:11px;font-weight:700;">WhatsApp</span>
-            </button>
-            <button class="btn btn-primary btn-sm" style="flex-direction:column;gap:4px;padding:10px 6px;border-radius:10px" onclick="shareEmail()">
-              <span style="font-size:18px;">📧</span>
-              <span style="font-size:11px;font-weight:700;">Email</span>
-            </button>
-            <button class="btn btn-accent btn-sm" style="flex-direction:column;gap:4px;padding:10px 6px;border-radius:10px" onclick="shareNative()">
-              <span style="font-size:18px;">↗️</span>
-              <span style="font-size:11px;font-weight:700;">Share</span>
-            </button>
-          </div>
-          <div style="font-size:11px;color:var(--gray-400);text-align:center;">Generate PDF first, then share via any of the above</div>
-        </div>
-
-        <!-- Google Sheets sync -->
-        <div style="background:var(--green-light);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;">
-          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px;">☁️ Sync to Google Sheets</div>
-          <div style="font-size:12px;color:var(--gray-500);margin-bottom:10px;">Pushes all inspection data to the central register. Requires internet.</div>
+        <!-- Google Sheets / Drive report -->
+        <div style="background:var(--green-light);border-radius:var(--radius-sm);padding:14px;margin-bottom:12px;">
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px;">☁️ Sync + Log to Google Sheets</div>
+          <div style="font-size:12px;color:var(--gray-500);margin-bottom:12px;">Pushes all inspection data to the central Google Sheet register. Requires internet.</div>
           <button class="btn btn-green btn-full btn-lg" onclick="syncToSheets()" id="sync-btn">
             🔄 SYNC TO GOOGLE SHEETS
           </button>
         </div>
 
-        <!-- All in one -->
+        <!-- Both together -->
         <button class="btn btn-accent btn-full btn-lg" onclick="generateBoth()" id="both-btn">
-          ⚡ GENERATE + SYNC BOTH
+          ⚡ GENERATE PDF + SYNC BOTH
         </button>
-        <div style="font-size:12px;color:var(--gray-400);margin-top:6px;text-align:center;">Generates PDF and syncs to Google Sheets in one tap</div>
+        <div style="font-size:12px;color:var(--gray-400);margin-top:8px;text-align:center;">Generates PDF on device and syncs to Google Sheets in one tap</div>
       </div>
     </div>
   </div>
@@ -850,16 +811,6 @@
       <div class="field-row">
         <label class="field-label">Mobile Number</label>
         <input type="tel" class="field-input" id="s-mobile" placeholder="+91 XXXXXXXXXX" oninput="saveSettings()">
-      </div>
-      <div class="field-row">
-        <label class="field-label">WhatsApp Number for Reports</label>
-        <input type="tel" class="field-input" id="s-whatsapp" placeholder="+91 XXXXXXXXXX (with country code)" oninput="saveSettings()">
-        <div class="field-hint">Include country code e.g. 919500270050 (no + or spaces)</div>
-      </div>
-      <div class="field-row">
-        <label class="field-label">Email for Reports</label>
-        <input type="email" class="field-input" id="s-email" placeholder="chennai@tfam.in" oninput="saveSettings()">
-        <div class="field-hint">PDF link will be sent to this email via your phone's mail app</div>
       </div>
     </div>
 
@@ -1089,8 +1040,6 @@ async function seedHardcodedClaims() {
         companyName: 'TFAM Insurance Surveyors & Loss Assessors Pvt. Ltd.',
         officeAddress: 'G1, Vrikshah Enclave, No.18 Viswanathan St, Radha Nagar, Chrompet, Chennai-600044',
         mobileNumber: '95002 70050',
-        whatsappNumber: '919500270050',
-        reportEmail: 'chennai@tfam.in',
       };
       for (const [key, value] of Object.entries(defaults)) {
         await db.settings.put({ key, value });
@@ -1431,18 +1380,19 @@ function renderPolicyInfo() {
   const fields = [
     ['Claim Number', c.claimNumber],
     ['Policy Number', c.policyNumber],
-    ['Policy Period', c.policyPeriod || c.tenure || '—'],
-    ['Insurance Company', c.insuranceCompany ? 'Royal Sundaram General Insurance' : '—'],
+    ['Insurance Company', c.insuranceCompany ? 'Royal Sundaram' : '—'],
     ['MML Branch', c.mmlBranch],
     ['Loan Number', c.loanNumber],
-    ['Sum Insured (Total)', c.sumInsured ? '₹' + Number(c.sumInsured).toLocaleString('en-IN') : '—'],
+    ['Sum Insured', c.sumInsured ? '₹' + Number(c.sumInsured).toLocaleString('en-IN') : '—'],
     ['Insured Name', c.insuredName],
     ['Contact Number', c.contactNumber],
     ['Type of Incident', c.typeOfIncident],
     ['Loss Date', c.lossDate],
-    ['Risk Location', c.lossAddress],
+    ['Loss Address', c.lossAddress],
     ['PIN Code', c.pinCode],
     ['District/Area', c.district],
+    ['TAT', c.tat],
+    ['Tenure', c.tenure],
     ['State', c.state],
   ];
   document.getElementById('policy-details-card').innerHTML = `
@@ -1462,9 +1412,6 @@ async function loadInspectionData() {
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('f-date').value = insp.inspectionDate || today;
   document.getElementById('f-loss-date').value = insp.lossDate || currentClaim.lossDate || '';
-  document.getElementById('f-policy-period').value = insp.policyPeriod || currentClaim.policyPeriod || currentClaim.tenure || '';
-  document.getElementById('f-si-building').value = insp.siBuilding || '';
-  document.getElementById('f-si-content').value = insp.siContent || '';
   document.getElementById('f-addr').value = insp.inspectionAddress || currentClaim.lossAddress || '';
   document.getElementById('f-district').value = insp.district || currentClaim.district || '';
   document.getElementById('f-pin').value = insp.pinCode || currentClaim.pinCode || '';
@@ -1515,9 +1462,6 @@ function gatherFormData() {
     claimNumber: currentClaim.claimNumber,
     inspectionDate: document.getElementById('f-date').value,
     lossDate: document.getElementById('f-loss-date').value,
-    policyPeriod: document.getElementById('f-policy-period').value,
-    siBuilding: document.getElementById('f-si-building').value,
-    siContent: document.getElementById('f-si-content').value,
     inspectionAddress: document.getElementById('f-addr').value,
     district: document.getElementById('f-district').value,
     pinCode: document.getElementById('f-pin').value,
@@ -1788,8 +1732,6 @@ function renderSettings() {
   document.getElementById('s-address').value = appSettings['officeAddress'] || '';
   document.getElementById('s-mobile').value = appSettings['mobileNumber'] || '';
   document.getElementById('s-sheets-url').value = appSettings['sheetsUrl'] || '';
-  if (document.getElementById('s-whatsapp')) document.getElementById('s-whatsapp').value = appSettings['whatsappNumber'] || '';
-  if (document.getElementById('s-email'))    document.getElementById('s-email').value    = appSettings['reportEmail'] || 'chennai@tfam.in';
 
   // Header preview
   if (appSettings['headerImage']) {
@@ -1824,8 +1766,6 @@ async function saveSettings() {
     officeAddress: document.getElementById('s-address').value,
     mobileNumber: document.getElementById('s-mobile').value,
     sheetsUrl: document.getElementById('s-sheets-url').value,
-    whatsappNumber: document.getElementById('s-whatsapp') ? document.getElementById('s-whatsapp').value : '',
-    reportEmail: document.getElementById('s-email') ? document.getElementById('s-email').value : '',
   };
   for (const [key, value] of Object.entries(updates)) {
     appSettings[key] = value;
@@ -2027,15 +1967,6 @@ async function generatePDF() {
     if (!val) return 'Rs. —';
     return 'Rs. ' + Number(val).toLocaleString('en-IN');
   }
-  // Convert any date string to dd-mm-yyyy
-  function fmtDate(val) {
-    if (!val) return '—';
-    // Handle yyyy-mm-dd (HTML date input format)
-    const m = String(val).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (m) return m[3] + '-' + m[2] + '-' + m[1];
-    // Handle dd-Mon-yyyy (e.g. 03-Aug-2026) — keep as is
-    return String(val);
-  }
   function bar(y, label) {
     doc.setFillColor(...NAVY);
     doc.rect(M, y, CW, 7, 'F');
@@ -2123,7 +2054,7 @@ async function generatePDF() {
   sf('bold', 9, NAVY);
   doc.text('Ref: ' + refNumber, M + 2, y + 5.5);
   sf('bold', 9, NAVY);
-  doc.text('Date: ' + fmtDate(insp.inspectionDate) || new Date().toLocaleDateString('en-GB').split('/').join('-'), W-M, y+5.5, {align:'right'});
+  doc.text('Date: ' + (insp.inspectionDate || new Date().toLocaleDateString('en-IN')), W-M, y+5.5, {align:'right'});
   y += 10;
 
   // ── A. POLICY & CLAIM DETAILS ──
@@ -2138,20 +2069,17 @@ async function generatePDF() {
   sf('bold', 10, NAVY);  doc.text(c.policyNumber || '—', M+CW/2+32, y+5.2);
   y += 10;
 
-  y = row2(y, 'Insured Name',       c.insuredName,        'Contact No.',     c.contactNumber);
-  y = row2(y, 'Insurance Company',  'Royal Sundaram General Insurance', 'MML Branch', c.mmlBranch);
-  y = row2(y, 'Loan Number',        c.loanNumber,         'Policy Period',   insp.policyPeriod || c.policyPeriod || c.tenure || '—');
-  y = row2(y, 'SI — Building',      insp.siBuilding ? 'Rs. '+Number(insp.siBuilding).toLocaleString('en-IN') : '—',
-               'SI — Content',      insp.siContent  ? 'Rs. '+Number(insp.siContent).toLocaleString('en-IN')  : '—');
-  y = row2(y, 'Type of Incident',   c.typeOfIncident,     'State',           c.state);
-  y = row2(y, 'Risk Location PIN',  insp.pinCode || c.pinCode || '—', '', '');
-  y = row1(y, 'Risk Location',      c.lossAddress);
+  y = row2(y, 'Insured Name',      c.insuredName,       'Contact No.',  c.contactNumber);
+  y = row2(y, 'Insurance Company', 'Royal Sundaram General Insurance', 'MML Branch', c.mmlBranch);
+  y = row2(y, 'Loan Number',       c.loanNumber,        'Sum Insured',  fmt(c.sumInsured));
+  y = row2(y, 'Type of Incident',  c.typeOfIncident,    'State',        c.state);
+  y = row1(y, 'Loss Address',      c.lossAddress);
   y += 3;
 
   // ── B. INSPECTION DETAILS ──
   y = bar(y, 'B.   INSPECTION DETAILS');
-  y = row2(y, 'Date of Inspection', fmtDate(insp.inspectionDate),
-               'Loss Date',         fmtDate(insp.lossDate || c.lossDate));
+  y = row2(y, 'Date of Inspection', insp.inspectionDate || '—',
+               'Loss Date',         insp.lossDate || c.lossDate || '—');
   y = row2(y, 'GPS Coordinates',    insp.latitude ? insp.latitude + ', ' + insp.longitude : '—',
                'Flood Level',       insp.floodLevel ? insp.floodLevel + ' ' + (insp.floodLevelUnit||'Feet') : '—');
   y = row2(y, 'District',           insp.district || c.district || '—',
@@ -2382,7 +2310,7 @@ async function buildPayload(claimNumber) {
     ClientMobile:      claim.contactNumber || '',
     LossAddress:       claim.lossAddress || '',
     InspectionDate:    insp.inspectionDate || '',
-    LossDate:          insp.lossDate || claim.lossDate || '',  // stored as yyyy-mm-dd, PDF shows dd-mm-yyyy
+    LossDate:          insp.lossDate || claim.lossDate || '',
     Latitude:          insp.latitude || '',
     Longitude:         insp.longitude || '',
     InspectionAddress: insp.inspectionAddress || '',
@@ -2391,9 +2319,6 @@ async function buildPayload(claimNumber) {
     FloodLevel:        insp.floodLevel || '',
     FloodLevelUnit:    insp.floodLevelUnit || '',
     DamageDetails:     (insp.damageDetails || '').substring(0, 400),
-    PolicyPeriod:      insp.policyPeriod || '',
-    SIBuilding:        insp.siBuilding || '',
-    SIContent:         insp.siContent || '',
     EstimatedLoss:     insp.estimatedLoss || '',
     NetAssessedLoss:   insp.netAssessedLoss || '',
     NumPhotos:         photos.length,
@@ -2451,160 +2376,6 @@ async function syncToSheets() {
   } finally {
     if (btn) { btn.textContent = '🔄 SYNC TO GOOGLE SHEETS'; btn.disabled = false; }
   }
-}
-
-// ── Last generated PDF blob — held in memory for sharing ──
-let lastPDFBlob = null;
-let lastPDFFilename = '';
-
-// ── Share via WhatsApp ──
-async function shareWhatsApp() {
-  const c = currentClaim;
-  if (!c) return;
-
-  const insp = await db.inspections.get(c.claimNumber) || {};
-  const wa   = appSettings['whatsappNumber'] || '';
-
-  // Build a text summary message
-  const msg = [
-    '*TFAM Final Survey Report*',
-    '─────────────────────',
-    `*Claim No:* ${c.claimNumber}`,
-    `*Insured:* ${c.insuredName}`,
-    `*MML Branch:* ${c.mmlBranch || '—'}`,
-    `*Date of Inspection:* ${fmtDate(insp.inspectionDate)}`,
-    `*Flood Level:* ${insp.floodLevel ? insp.floodLevel + ' ' + (insp.floodLevelUnit||'Feet') : '—'}`,
-    `*Estimated Loss:* Rs. ${insp.estimatedLoss ? Number(insp.estimatedLoss).toLocaleString('en-IN') : '—'}`,
-    `*Net Assessed Loss:* Rs. ${insp.netAssessedLoss ? Number(insp.netAssessedLoss).toLocaleString('en-IN') : '—'}`,
-    `*Inspector:* Surveyor ${insp.inspectorNumber || '—'}`,
-    '─────────────────────',
-    '_TFAM Insurance Surveyors & Loss Assessors Pvt. Ltd._',
-  ].join('
-');
-
-  const encoded = encodeURIComponent(msg);
-  const url = wa
-    ? `https://wa.me/${wa.replace(/[^0-9]/g,'')}?text=${encoded}`
-    : `https://wa.me/?text=${encoded}`;
-
-  // Also generate and download the PDF
-  await generatePDF();
-
-  // Open WhatsApp with the text message
-  setTimeout(() => {
-    window.open(url, '_blank');
-    showToast('PDF saved — attach it manually in WhatsApp', 'green', 4000);
-  }, 1000);
-}
-
-// ── Share via Email ──
-async function shareEmail() {
-  const c = currentClaim;
-  if (!c) return;
-
-  const insp  = await db.inspections.get(c.claimNumber) || {};
-  const email = appSettings['reportEmail'] || 'chennai@tfam.in';
-
-  const subject = encodeURIComponent(
-    `Final Survey Report — ${c.claimNumber} — ${c.insuredName}`
-  );
-
-  const body = encodeURIComponent([
-    `Dear Team,`,
-    ``,
-    `Please find below the Final Survey Report for:`,
-    ``,
-    `Claim No      : ${c.claimNumber}`,
-    `Policy No     : ${c.policyNumber || '—'}`,
-    `Insured Name  : ${c.insuredName}`,
-    `MML Branch    : ${c.mmlBranch || '—'}`,
-    `Date of Insp  : ${fmtDate(insp.inspectionDate)}`,
-    `Loss Date     : ${fmtDate(insp.lossDate || c.lossDate)}`,
-    `Flood Level   : ${insp.floodLevel ? insp.floodLevel + ' ' + (insp.floodLevelUnit||'Feet') : '—'}`,
-    `GPS           : ${insp.latitude ? insp.latitude + ', ' + insp.longitude : '—'}`,
-    `Insp Address  : ${insp.inspectionAddress || c.lossAddress || '—'}`,
-    `District      : ${insp.district || c.district || '—'}`,
-    `PIN Code      : ${insp.pinCode || c.pinCode || '—'}`,
-    ``,
-    `Damage Details:`,
-    `${insp.damageDetails || '—'}`,
-    ``,
-    `Estimated Loss    : Rs. ${insp.estimatedLoss ? Number(insp.estimatedLoss).toLocaleString('en-IN') : '—'}`,
-    `Net Assessed Loss : Rs. ${insp.netAssessedLoss ? Number(insp.netAssessedLoss).toLocaleString('en-IN') : '—'}`,
-    ``,
-    `Remarks: ${insp.remarks || 'Nil'}`,
-    ``,
-    `Inspector: Surveyor ${insp.inspectorNumber || '—'}`,
-    ``,
-    `The PDF report has been generated and saved to your device.`,
-    `Please attach it to this email before sending.`,
-    ``,
-    `Regards,`,
-    `${appSettings['surveyorName'] || 'Surveyor'}`,
-    `${appSettings['companyName'] || 'TFAM Insurance Surveyors & Loss Assessors Pvt. Ltd.'}`,
-    `Licence No: ${appSettings['licenceNumber'] || 'SLA-200072'}`,
-    `Mobile: ${appSettings['mobileNumber'] || ''}`,
-  ].join('
-'));
-
-  // Generate PDF first (saves to device)
-  await generatePDF();
-
-  // Open mail app with pre-filled details
-  setTimeout(() => {
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-    showToast('PDF saved — attach it from Downloads in your mail app', 'green', 5000);
-  }, 1000);
-}
-
-// ── Native Share (Android share sheet — share to anything) ──
-async function shareNative() {
-  const c = currentClaim;
-  if (!c) return;
-
-  const insp = await db.inspections.get(c.claimNumber) || {};
-
-  // Try Web Share API first (works on Android Chrome)
-  if (navigator.share) {
-    try {
-      // Generate PDF to get blob
-      showToast('Preparing PDF for sharing…');
-      const { jsPDF } = window.jspdf;
-      // We regenerate a quick version for sharing
-      await generatePDFBlob(c, insp);
-
-      if (lastPDFBlob) {
-        const file = new File([lastPDFBlob], lastPDFFilename, { type: 'application/pdf' });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            title: `Survey Report — ${c.claimNumber}`,
-            text: `Final Survey Report for ${c.insuredName} — ${c.claimNumber}`,
-            files: [file],
-          });
-          showToast('✅ Shared!', 'green');
-          return;
-        }
-      }
-      // Fallback: share text only
-      await navigator.share({
-        title: `Survey Report — ${c.claimNumber}`,
-        text: `Final Survey Report for ${c.insuredName} — ${c.claimNumber} — Estimated Loss: Rs.${insp.estimatedLoss||'—'}`,
-      });
-      showToast('Shared as text. Generate PDF first to share the file.', 'green', 4000);
-    } catch(e) {
-      if (e.name !== 'AbortError') showToast('Share failed: ' + e.message, 'red');
-    }
-  } else {
-    // Desktop fallback — just generate PDF
-    await generatePDF();
-    showToast('PDF saved to Downloads. Share manually from there.', 'green', 4000);
-  }
-}
-
-// ── Generate PDF and also store blob for native share ──
-async function generatePDFBlob(c, insp) {
-  // Just call generatePDF which saves the file — blob capture is best-effort
-  await generatePDF();
 }
 
 async function generateBoth() {
@@ -2740,7 +2511,6 @@ function doGet(e) {
     var fields = [
       'InspectionDate','LossDate','Latitude','Longitude',
       'InspectionAddress','District','PINCode',
-      'PolicyPeriod','SIBuilding','SIContent',
       'FloodLevel','FloodLevelUnit','DamageDetails',
       'EstimatedLoss','NetAssessedLoss','NumPhotos',
       'InspectorNumber','InspectionStatus','LastUpdated','Remarks'
